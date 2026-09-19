@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rustam | @heaven1yrayk</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Современные шрифты: дерзкий Space Grotesk + аккуратный Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+  <!-- Иконки FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+  <div class="card-container">
+    <!-- Левая колонка (информация и кнопки) -->
+    <div class="content-side">
+      <nav class="navbar">
+        <span class="badge">dev // bio</span>
+        <div class="status-indicator">
+          <span class="dot"></span> online
+        </div>
+      </nav>
+
+      <div class="hero">
+        <h1 class="title">Rustam <span class="tag">@heaven1yrayk</span></h1>
+        <p class="subtitle">
+          Ассаламу алейкум! Я Рустам
+        </p>
+      </div>
+
+      <!-- Кнопки-ссылки в монохромном стиле -->
+      <div class="links-group">
+        <a href="https://t.me/heaven1yrayk" target="_blank" class="btn btn-primary">
+          <i class="fa-brands fa-telegram"></i> Мой Telegram
+        </a>
+        <a href="https://t.me/+de4O_TpxcKczMmJi" target="_blank" class="btn btn-secondary">
+          <i class="fa-solid fa-bullhorn"></i> ТГ-канал с мыслями
+        </a>
+        <a href="https://github.com/mamashika1337" target="_blank" class="btn btn-outline">
+          <i class="fa-brands fa-github"></i> GitHub
+        </a>
+      </div>
+
+      <!-- Интерактивная пасхалка -->
+      <div class="fun-section">
+        <button id="funBtn" class="btn-fun">⚡ Сгенерировать мысль</button>
+        <p id="funText" class="fun-message"></p>
+      </div>
+
+      <footer class="footer">
+        <span>© 2026 Crafted with ⚡</span>
+      </footer>
+    </div>
+
+    <!-- Правая колонка (картинка Саске с плавным срезом) -->
+    <div class="visual-side">
+      <img src="sasuke.jpg" alt="Sasuke Manga" class="visual-img" />
+      <div class="overlay-grain"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

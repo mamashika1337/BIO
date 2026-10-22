@@ -44,6 +44,14 @@ body {
   box-shadow:
     0 40px 80px -40px rgba(0, 0, 0, 0.9),
     0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+  transform: scale(0.985);
+  opacity: 0.6;
+  transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+.card-container.is-entered {
+  transform: scale(1);
+  opacity: 1;
 }
 
 /* ---------- Левая колонка ---------- */
@@ -499,4 +507,206 @@ body {
   .dot { animation: none; }
   .projects-list { animation: none; }
   .chevron { transition: none; }
+}
+
+/* ---------- Интро-заставка ---------- */
+
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: grid;
+  place-items: center;
+  background: #000;
+  overflow: hidden;
+  transition: opacity 0.8s ease;
+}
+
+.intro.intro--ready {
+  background: #000;
+}
+
+.intro--ready .intro-text,
+.intro--ready .intro-prompt {
+  opacity: 0;
+}
+
+.intro--active {
+  opacity: 1;
+}
+
+.intro--done {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.intro-snow {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.intro-text {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  text-align: center;
+}
+
+.intro-text.is-visible {
+  opacity: 1;
+}
+
+.intro-line {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(40px, 9vw, 96px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  color: #fff;
+  white-space: pre;
+}
+
+.caret {
+  display: inline-block;
+  width: 3px;
+  height: 0.9em;
+  margin-left: 0.12em;
+  vertical-align: -0.06em;
+  background: #fff;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.7);
+  animation: caret-blink 0.9s step-end infinite;
+  opacity: 0;
+}
+
+.intro-line.is-active .caret {
+  opacity: 1;
+}
+
+@keyframes caret-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.intro-prompt {
+  position: absolute;
+  bottom: clamp(28px, 8vh, 72px);
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  z-index: 2;
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.55);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  cursor: pointer;
+  user-select: none;
+}
+
+.intro-prompt::after {
+  content: "";
+  position: absolute;
+  left: -14px;
+  right: -14px;
+  bottom: -14px;
+  top: -14px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  opacity: 0;
+  animation: prompt-ring 1.8s ease-out infinite;
+}
+
+.intro-prompt.is-visible {
+  opacity: 1;
+  animation: prompt-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes prompt-pulse {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-4px); }
+}
+
+@keyframes prompt-ring {
+  0%   { opacity: 0.6; transform: scale(0.8); }
+  70%  { opacity: 0;   transform: scale(1.2); }
+  100% { opacity: 0;   transform: scale(1.2); }
+}
+
+.intro-reveal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 3;
+  width: 90vmin;
+  height: 90vmin;
+  clip-path: circle(0% at 50% 50%);
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  will-change: clip-path, transform, opacity;
+  pointer-events: none;
+}
+
+.intro-reveal img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.intro-reveal.is-revealing {
+  animation: intro-reveal-circle 1.15s cubic-bezier(0.7, 0, 0.2, 1) forwards;
+}
+
+@keyframes intro-reveal-circle {
+  0% {
+    clip-path: circle(0% at 50% 50%);
+    transform: translate(-50%, -50%) scale(0.2);
+    opacity: 1;
+  }
+  45% {
+    clip-path: circle(34% at 50% 50%);
+    transform: translate(-50%, -50%) scale(0.55);
+  }
+  100% {
+    clip-path: circle(71% at 50% 50%);
+    transform: translate(-50%, -50%) scale(2.6);
+  }
+}
+
+/* Вспышка-концентрация перед раскрытием круга */
+.intro-flash {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 4;
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0%, rgba(180, 220, 255, 0.8) 40%, transparent 70%);
+  transform: scale(0);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.intro-flash.is-flashing {
+  animation: intro-flash 0.55s ease-out forwards;
+}
+
+@keyframes intro-flash {
+  0%   { transform: scale(0);    opacity: 0; }
+  30%  { transform: scale(30);   opacity: 0.9; }
+  100% { transform: scale(48);   opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro { display: none; }
 }

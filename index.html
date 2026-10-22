@@ -3,64 +3,96 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
   <title>Rustam | @heaven1yrayk</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- Современные шрифты: дерзкий Space Grotesk + аккуратный Inter -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
-  <!-- Иконки FontAwesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 </head>
 <body>
 
-  <div class="card-container">
-    <!-- Левая колонка (информация и кнопки) -->
-    <div class="content-side">
+  <main class="card-container">
+
+    <section class="content-side">
       <nav class="navbar">
         <span class="badge">dev // bio</span>
-        <div class="status-indicator">
-          <span class="dot"></span> online
-        </div>
+        <span class="status-indicator">
+          <span class="dot" aria-hidden="true"></span> online
+        </span>
       </nav>
 
-      <div class="hero">
-        <h1 class="title">Rustam <span class="tag">@heaven1yrayk</span></h1>
-        <p class="subtitle">
-          Ассаламу алейкум! Я Рустам
-        </p>
+      <header class="hero">
+        <h1 class="title">Rustam</h1>
+        <p class="tag">@heaven1yrayk</p>
+        <p class="subtitle">Ассаламу алейкум! Я Рустам</p>
+      </header>
+
+      <nav class="links-group" aria-label="Ссылки">
+        <a href="https://t.me/heaven1yrayk" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+          <i class="fa-brands fa-telegram" aria-hidden="true"></i> Мой Telegram
+        </a>
+        <a href="https://t.me/+de4O_TpxcKczMmJi" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+          <i class="fa-solid fa-bullhorn" aria-hidden="true"></i> ТГ-канал с мыслями
+        </a>
+        <a href="https://github.com/mamashika1337" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+          <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub
+        </a>
+      </nav>
+
+      <!-- Раскрывающийся список проектов -->
+      <div class="projects-section">
+        <button
+          id="projectsBtn"
+          class="btn-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="projectsList"
+        >
+          <span class="btn-toggle-label">
+            <i class="fa-solid fa-folder-open" aria-hidden="true"></i>
+            Проекты
+            <span class="count" id="projectsCount">1</span>
+          </span>
+          <i class="fa-solid fa-chevron-down chevron" aria-hidden="true"></i>
+        </button>
+
+        <div id="projectsList" class="projects-list" hidden>
+          <a
+            href="https://t.me/vpn_vasya_bot"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="project-card"
+          >
+            <div class="project-icon">
+              <i class="fa-brands fa-telegram" aria-hidden="true"></i>
+            </div>
+            <div class="project-body">
+              <p class="project-name">@vpn_vasya_bot</p>
+              <p class="project-desc">Telegram-бот с VPN</p>
+            </div>
+            <i class="fa-solid fa-arrow-up-right-from-square project-arrow" aria-hidden="true"></i>
+          </a>
+        </div>
       </div>
 
-      <!-- Кнопки-ссылки в монохромном стиле -->
-      <div class="links-group">
-        <a href="https://t.me/heaven1yrayk" target="_blank" class="btn btn-primary">
-          <i class="fa-brands fa-telegram"></i> Мой Telegram
-        </a>
-        <a href="https://t.me/+de4O_TpxcKczMmJi" target="_blank" class="btn btn-secondary">
-          <i class="fa-solid fa-bullhorn"></i> ТГ-канал с мыслями
-        </a>
-        <a href="https://github.com/mamashika1337" target="_blank" class="btn btn-outline">
-          <i class="fa-brands fa-github"></i> GitHub
-        </a>
-      </div>
-
-      <!-- Интерактивная пасхалка -->
       <div class="fun-section">
-        <button id="funBtn" class="btn-fun">⚡ Сгенерировать мысль</button>
-        <p id="funText" class="fun-message"></p>
+        <button id="funBtn" class="btn-fun" type="button">⚡ Сгенерировать мысль</button>
+        <p id="funText" class="fun-message" aria-live="polite"></p>
       </div>
 
       <footer class="footer">
         <span>© 2026 Crafted with ⚡</span>
       </footer>
-    </div>
+    </section>
 
-    <!-- Правая колонка (картинка Саске с плавным срезом) -->
-    <div class="visual-side">
-      <img src="sasuke.jpg" alt="Sasuke Manga" class="visual-img" />
+    <aside class="visual-side" aria-hidden="true">
+      <img src="sasuke.jpg" alt="" class="visual-img" loading="lazy" />
       <div class="overlay-grain"></div>
-    </div>
-  </div>
+    </aside>
+
+  </main>
 
   <script src="script.js"></script>
 </body>
